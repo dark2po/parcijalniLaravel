@@ -20,7 +20,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('createRole');
+        return view('role.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class RoleController extends Controller
             'roleName' => $request->input('roleName'),
         ]);
 
-        return redirect()-route('role.index');
+        return redirect()->route('role.index');
     }
 
     /**
@@ -48,7 +48,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('editRole', ['name' => $role->name, 'id' => $role->id]);
+        return view('role.editDelete', ['roleName' => $role->roleName, 'id' => $role->id]);
     }
 
     /**
@@ -56,14 +56,19 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->roleName = $request->input('roleName');
+        $role->save();
+
+        return redirect()->route('role.show', $role);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(int $role)
     {
-        //
+        Role::destroy($role);
+
+        return redirect()->route('role.index');
     }
 }
