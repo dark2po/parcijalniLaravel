@@ -21,7 +21,7 @@ class NavigationController extends Controller
      */
     public function create()
     {
-        return view('navigation.crete');
+        return view('navigation.create');
     }
 
     /**
@@ -29,10 +29,12 @@ class NavigationController extends Controller
      */
     public function store(Request $request)
     {
-        Page::create([
+        Navigation::create([
             'navigationName' => $request->input('navigationName'),
             'uri' => $request->input('uri'),
         ]);
+
+        return redirect()->route('navigation.index');
     }
 
     /**

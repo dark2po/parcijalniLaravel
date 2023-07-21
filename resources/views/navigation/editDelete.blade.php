@@ -13,7 +13,7 @@
   <label for="navigationName">Navigation name:</label><br>
   <input type="text" id="navigationName" name="navigationName" required="required" value="{{$navigationName}}" ><br><br>
   <label for="uri">URI:</label><br>
-  <input type="text" id="uri" name="uri" required="required" value={{$uri}} ><br><br>
+  <input type="text" id="uri" name="uri" required="required" value="{{$uri}}" ><br><br>
 
   @csrf 
   <input type="submit" value="Update navigation data">
