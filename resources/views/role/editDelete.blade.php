@@ -11,7 +11,7 @@
 <form action="/role/{{$id}}", method=post>
   <input type="hidden" name="_method" value="PUT">
   <label for="roleName">Role name:</label><br>
-  <input type="text" id="roleName" name="roleName" required="required" value={{$roleName}} ><br><br>
+  <input type="text" id="roleName" name="roleName" required="required" value="{{$roleName}}" ><br><br>
   @csrf 
   <input type="submit" value="Update role data">
 </form>
@@ -20,7 +20,7 @@
 <form action="/role/{{$id}}", method=post>
   <input type="hidden" name="_method" value="DELETE">
   <label for="roleName">User name:</label><br>
-  <input type="text" id="roleName" name="roleName" required="required" value={{$roleName}} ><br><br>
+  <input type="text" id="roleName" name="roleName" required="required" value="{{$roleName}}" ><br><br>
   @csrf 
   <input type="submit" value="Delete this role !!!">
 </form>

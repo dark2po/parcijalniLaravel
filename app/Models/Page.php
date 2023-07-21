@@ -11,7 +11,14 @@ class Page extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['pageTitle', 'pageText', 'photoPath', 'photoName', 'photoSize', 'user_id', 'navigation_id'];
+    protected $fillable = [
+        'pageTitle', 
+        'pageText', 
+        'photoPath', 
+        'photoName', 
+        'user_id', 
+        'navigation_id'
+    ];
 
     protected $hidden = [];
 

@@ -34,6 +34,9 @@ class UserConrtoller extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+
+            //  ZA SADA KOMENTIRANO  -  RELACIJE U BAZI - HARDKODIRANE DEFAULT VRIJEDNOSTI
+            // 'role_id' => $request->input('role_id'),
         ]);
 
         return redirect()->route('user.index');

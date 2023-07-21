@@ -19,7 +19,6 @@ class PageSeeder extends Seeder
                 'pageText' => 'Text 01',
                 'photoPath' => '/storage/app/public',
                 'photoName' => 'Photo 01',
-                'photoSize' => 1024,
                 'user_id' => 1,
                 'navigation_id' => 1
             ],
@@ -28,7 +27,6 @@ class PageSeeder extends Seeder
                 'pageText' => 'Text 03',
                 'photoPath' => '/storage/app/public',
                 'photoName' => 'Photo 03',
-                'photoSize' => 2048,
                 'user_id' => 2,
                 'navigation_id' => 2
             ]

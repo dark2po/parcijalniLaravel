@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('pageText');
             $table->string('photoPath');
             $table->string('photoName');
-            $table->integer('photoSize');
         });
     }
 

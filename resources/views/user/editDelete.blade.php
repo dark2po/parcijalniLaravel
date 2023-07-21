@@ -11,9 +11,9 @@
 <form action="/user/{{$id}}", method=post>
   <input type="hidden" name="_method" value="PUT">
   <label for="name">User name:</label><br>
-  <input type="text" id="name" name="name" required="required" value={{$name}} ><br><br>
+  <input type="text" id="name" name="name" required="required" value="{{$name}}" ><br><br>
   <label for="email">Email:</label><br>
-  <input type="text" id="email" name="email" required="required" value={{$email}} ><br><br>
+  <input type="text" id="email" name="email" required="required" value="{{$email}}" ><br><br>
   <label for="password">Password:</label><br>
   <input type="text" id="password" name="password" required="required"  ><br><br>
   @csrf 
@@ -24,7 +24,7 @@
 <form action="/user/{{$id}}", method=post>
   <input type="hidden" name="_method" value="DELETE">
   <label for="name">User name:</label><br>
-  <input type="text" id="name" name="name" required="required" value={{$name}} ><br><br>
+  <input type="text" id="name" name="name" required="required" value="{{$name}}" ><br><br>
   @csrf 
   <input type="submit" value="Delete User !!!">
 </form>

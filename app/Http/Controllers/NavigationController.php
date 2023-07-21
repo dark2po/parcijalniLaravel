@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Navigation;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class NavigationController extends Controller
@@ -12,7 +13,7 @@ class NavigationController extends Controller
      */
     public function index()
     {
-        //
+        return Navigation::all();
     }
 
     /**
@@ -20,7 +21,7 @@ class NavigationController extends Controller
      */
     public function create()
     {
-        //
+        return view('navigation.crete');
     }
 
     /**
@@ -28,7 +29,10 @@ class NavigationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Page::create([
+            'navigationName' => $request->input('navigationName'),
+            'uri' => $request->input('uri'),
+        ]);
     }
 
     /**
@@ -36,7 +40,7 @@ class NavigationController extends Controller
      */
     public function show(Navigation $navigation)
     {
-        //
+        return $navigation;
     }
 
     /**
@@ -44,7 +48,11 @@ class NavigationController extends Controller
      */
     public function edit(Navigation $navigation)
     {
-        //
+        return view('navigation.editDelete', [
+            'id' => $navigation->id,
+            'navigationName' => $navigation->navigationName,
+            'uri' => $navigation->uri,
+        ]);
     }
 
     /**
@@ -52,14 +60,20 @@ class NavigationController extends Controller
      */
     public function update(Request $request, Navigation $navigation)
     {
-        //
+        $navigation->navigationName = $request->input('navigationName');
+        $navigation->uri = $request->input('uri');
+        $navigation->save();
+
+        return redirect()->route('navigation.show', $navigation);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Navigation $navigation)
+    public function destroy(int $navigation)
     {
-        //
+        Navigation::destroy($navigation);
+
+        return redirect()->route('navigation.index');
     }
 }
