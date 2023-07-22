@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -20,7 +22,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('page.create');
+        $users = User::pluck('name', 'id')->toArray();
+        return view('page.create', compact('users'));
     }
 
     /**
@@ -28,15 +31,21 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'pageTitle' => ['required', 'string', 'max:50', 'min:2', 'unique:'.Page::class],
+            'pageText' => ['required', 'string', 'max:255', 'min:25'],
+            'photoPath' => ['required', 'string', 'max:255', 'min:2'],
+            'photoName' => ['required', 'string', 'max:255', 'min:2'],
+            'user_id' => ['required', 'exists:users,id']
+        ]);
+
         Page::create([
             'pageTitle' => $request->input('pageTitle'),
             'pageText' => $request->input('pageText'),
             'photoPath' => $request->input('photoPath'),
             'photoName' => $request->input('photoName'),
+            'user_id' => $request->input('user_id'),
 
-            //  ZA SADA KOMENTIRANO  -  RELACIJE U BAZI - HARDKODIRANE DEFAULT VRIJEDNOSTI
-            // 'user_id' => $request->input('user_id'),
-            // 'navigation_id' => $request->input('navigation_id'),
         ]);
 
         return redirect()->route('page.index');
@@ -55,16 +64,15 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
+        $users = User::pluck('name', 'id')->toArray();
         return view('page.editDelete', [
             'id' => $page->id,
             'pageTitle' => $page->pageTitle,
             'pageText' => $page->pageText,
             'photoPath' => $page->photoPath,
             'photoName' => $page->photoName,
-
-            //  ZA SADA KOMENTIRANO  -  RELACIJE U BAZI - HARDKODIRANE DEFAULT VRIJEDNOSTI
-            // 'user_id' => $page->user_id,
-            // 'navigation_id' => $page->navigation_id,
+            'user_id' => $page->user_id, 
+            "users" => $users
         ]);
     }
 
@@ -73,6 +81,14 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
+        $request->validate([
+            'pageTitle' => ['required', 'string', 'max:50', 'min:2', Rule::unique(Page::class)->ignore($page->id)],
+            'pageText' => ['required', 'string', 'max:255', 'min:25'],
+            'photoPath' => ['required', 'string', 'max:255', 'min:2'],
+            'photoName' => ['required', 'string', 'max:255', 'min:2'],
+            'user_id' => ['required', 'exists:users,id']
+        ]);
+
         $page->pageTitle = $request->input('pageTitle');
         $page->pageText = $request->input('pageText');
         $page->photoPath = $request->input('photoPath');

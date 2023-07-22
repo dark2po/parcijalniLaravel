@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
@@ -28,6 +29,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'roleName' => ['required', 'string', 'max:255', 'min:2', 'unique:'.Role::class],
+        ]);
+
         Role::create([
             'roleName' => $request->input('roleName'),
         ]);
@@ -48,7 +53,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('role.editDelete', ['roleName' => $role->roleName, 'id' => $role->id]);
+        return view('role.editDelete', [
+            'roleName' => $role->roleName, 
+            'id' => $role->id
+        ]);
     }
 
     /**
@@ -56,6 +64,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $request->validate([
+            'roleName' => ['required', 'string', 'max:255', 'min:2', Rule::unique(Role::class)->ignore($role->id)],
+        ]);
+        
         $role->roleName = $request->input('roleName');
         $role->save();
 

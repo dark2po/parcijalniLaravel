@@ -16,11 +16,13 @@ class NavigationSeeder extends Seeder
         DB::table('navigations')->insert([
             [
                 'navigationName' => 'Home',
-                'uri' => '/'
+                'uri' => '/',
+                'page_id' => 1
             ],
             [
                 'navigationName' => 'Dashboard',
-                'uri' => '/dashboard'
+                'uri' => '/dashboard',
+                'page_id' => 1
             ],
         ]);
     }

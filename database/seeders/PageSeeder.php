@@ -20,7 +20,6 @@ class PageSeeder extends Seeder
                 'photoPath' => '/storage/app/public',
                 'photoName' => 'Photo 01',
                 'user_id' => 1,
-                'navigation_id' => 1
             ],
             [
                 'pageTitle' => 'Title 02',
@@ -28,7 +27,6 @@ class PageSeeder extends Seeder
                 'photoPath' => '/storage/app/public',
                 'photoName' => 'Photo 03',
                 'user_id' => 2,
-                'navigation_id' => 2
             ]
             ]);
     }

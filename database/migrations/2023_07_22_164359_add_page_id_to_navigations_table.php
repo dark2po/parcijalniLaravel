@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pages', function (Blueprint $table) {
-            $table->foreignId('navigation_id')->constrained();
+        Schema::table('navigations', function (Blueprint $table) {
+            $table->foreignId('page_id')->constrained();
         });
     }
 
@@ -21,9 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pages', function (Blueprint $table) {
-            $table->dropForeign('pages_menu_id_foreign');
-            $table->dropColumn('navigation_id');
+        Schema::table('navigations', function (Blueprint $table) {
+            $table->dropForeign('navigation_page_id_foreign');
+            $table->dropColumn('page_id');
         });
     }
 };
