@@ -60,6 +60,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
+        // dd($page->pageText);
         $users = User::pluck('name', 'id')->toArray();
         return view('page.editDelete', [
             'id' => $page->id,
