@@ -35,8 +35,8 @@
     <label for="user_id">Select user:</label><br>
     <select id="user_id" name ="user_id">
       <option value="none" selected disabled hidden>Select an Option</option>
-      @foreach ($users as $user_id => $name)
-      <option value="{{$user_id}}">"{{$name}}"</option>
+      @foreach ($users as $user_id2 => $name)
+      <option value="{{$user_id}}" @selected($user_id2 == $user_id)>"{{$name}}"</option>
       @endforeach
     </select>  
     <br><br>

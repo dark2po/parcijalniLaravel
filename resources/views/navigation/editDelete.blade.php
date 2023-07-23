@@ -31,8 +31,8 @@
     <label for="page_id">Select page:</label><br>
     <select id="page_id" name ="page_id">
       <option value="none" selected disabled hidden>Select an Option</option>
-      @foreach ($pages as $page_id => $pageName)
-      <option value="{{$page_id}}">"{{$pageName}}"</option>
+      @foreach ($pages as $page_id2 => $pageName)
+      <option value="{{$page_id}}" @selected($page_id2 == $page_id)>"{{$pageName}}"</option>
       @endforeach
     </select>  
     <br><br>

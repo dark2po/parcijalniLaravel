@@ -31,9 +31,9 @@
 
     <label for="role_id">Select role:</label><br>
     <select id="role_id" name ="role_id">
-      <option value="none" selected disabled hidden>Select an Option</option>
+      <option value="none" selected disabled hidden>Select an Option</option> 
       @foreach ($roles as $role_id => $roleName)
-      <option value="{{$role_id}}">"{{$roleName}}"</option>
+      <option value="{{$role_id}}" @selected($role_id == old('role_id'))>"{{$roleName}}"</option>
       @endforeach
     </select>  
     <br><br>

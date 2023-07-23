@@ -33,8 +33,8 @@
     <label for="role_id">Select role:</label><br>
     <select id="role_id" name="role_id">
       <option value="none" selected disabled hidden>Select an Option</option>
-      @foreach ($roles as $role_id => $roleName)
-      <option value="{{$role_id}}">"{{$roleName}}"</option>
+      @foreach ($roles as $role_id2 => $roleName)
+      <option value="{{$role_id2}}" @selected($role_id2 == $role_id)>"{{$roleName}}"</option>
       @endforeach
     </select>
     <br><br>

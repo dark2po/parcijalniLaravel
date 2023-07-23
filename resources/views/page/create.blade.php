@@ -25,7 +25,7 @@
     <label for="pageTitle">Page title:</label><br>
     <input type="text" id="pageTitle" name="pageTitle" required="required" value="{{ old('pageTitle') }}"><br><br>
     <label for="pageText">Page text:</label><br>
-    <textarea id="pageText" name="pageText" required="required" cols="55" rows="10" value="{{ old('pageText') }}"></textarea> <br><br>
+    <textarea id="pageText" name="pageText" required="required" cols="55" rows="10">{{ old('pageText') }}</textarea> <br><br>
 
     <label for="photoPath">Photo pathe:</label><br>
     <input type="text" id="photoPath" name="photoPath" required="required" value="{{ old('photoPath') }}"><br><br>
@@ -36,7 +36,7 @@
     <select id="user_id" name ="user_id">
       <option value="none" selected disabled hidden>Select an Option</option>
       @foreach ($users as $user_id => $name)
-      <option value="{{$user_id}}">"{{$name}}"</option>
+      <option value="{{$user_id}}"@selected($user_id == old('user_id'))>"{{$name}}"</option>
       @endforeach
     </select>  
     <br><br>

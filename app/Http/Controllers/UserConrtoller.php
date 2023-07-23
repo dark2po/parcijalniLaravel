@@ -7,6 +7,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rules\Password;
 
 class UserConrtoller extends Controller
@@ -14,9 +15,11 @@ class UserConrtoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
-        return User::all();
+
+        return view('user.index', ['users' => User::all()->toArray()]);
+        // return User::all();
     }
 
     /**
@@ -54,7 +57,8 @@ class UserConrtoller extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return view('user.show', ['user' => $user->toArray()]);
+        // return $user;
     }
 
     /**
@@ -68,7 +72,8 @@ class UserConrtoller extends Controller
             'id' => $user->id, 
             'email' => $user->email, 
             'role_id' => $user->role_id, 
-            "roles" => $roles]);
+            "roles" => $roles
+        ]);
     }
 
     /**
