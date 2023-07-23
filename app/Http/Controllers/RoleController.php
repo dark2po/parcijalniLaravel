@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleStoreRequest;
+use App\Http\Requests\RoleUpdateRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -27,14 +29,11 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        $request->validate([
-            'roleName' => ['required', 'string', 'max:255', 'min:2', 'unique:'.Role::class],
-        ]);
 
         Role::create([
-            'roleName' => $request->input('roleName'),
+            'roleName' => $request->validated('roleName'),
         ]);
 
         return redirect()->route('role.index');
@@ -62,13 +61,10 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(RoleUpdateRequest $request, Role $role)
     {
-        $request->validate([
-            'roleName' => ['required', 'string', 'max:255', 'min:2', Rule::unique(Role::class)->ignore($role->id)],
-        ]);
         
-        $role->roleName = $request->input('roleName');
+        $role->roleName = $request->validated('roleName');
         $role->save();
 
         return redirect()->route('role.show', $role);

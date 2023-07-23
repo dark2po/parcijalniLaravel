@@ -26,7 +26,7 @@
     <label for="pageTitle">Page title:</label><br>
     <input type="text" id="pageTitle" name="pageTitle" required="required" value="{{$pageTitle}}"><br><br>
     <label for="pageText">Page text:</label><br>
-    <input type="text" id="pageText" name="pageText" required="required" value="{{$pageText}}"><br><br>
+    <textarea id="pageText" name="pageText" required="required" cols="55" rows="10" value="{{ old('pageText') }}"></textarea> <br><br>
     <label for="photoName">Photo name:</label><br>
     <input type="text" id="photoName" name="photoName" required="required" value="{{$photoName}}"><br><br>
     <label for="photoPath">Photo path:</label><br>

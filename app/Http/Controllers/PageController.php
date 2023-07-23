@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PageStoreRequest;
+use App\Http\Requests\PageUpdateRequest;
 use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,22 +31,16 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PageStoreRequest $request)
     {
-        $request->validate([
-            'pageTitle' => ['required', 'string', 'max:50', 'min:2', 'unique:'.Page::class],
-            'pageText' => ['required', 'string', 'max:255', 'min:25'],
-            'photoPath' => ['required', 'string', 'max:255', 'min:2'],
-            'photoName' => ['required', 'string', 'max:255', 'min:2'],
-            'user_id' => ['required', 'exists:users,id']
-        ]);
+
 
         Page::create([
-            'pageTitle' => $request->input('pageTitle'),
-            'pageText' => $request->input('pageText'),
-            'photoPath' => $request->input('photoPath'),
-            'photoName' => $request->input('photoName'),
-            'user_id' => $request->input('user_id'),
+            'pageTitle' => $request->validated('pageTitle'),
+            'pageText' => $request->validated('pageText'),
+            'photoPath' => $request->validated('photoPath'),
+            'photoName' => $request->validated('photoName'),
+            'user_id' => $request->validated('user_id'),
 
         ]);
 
@@ -79,20 +75,13 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Page $page)
+    public function update(PageUpdateRequest $request, Page $page)
     {
-        $request->validate([
-            'pageTitle' => ['required', 'string', 'max:50', 'min:2', Rule::unique(Page::class)->ignore($page->id)],
-            'pageText' => ['required', 'string', 'max:255', 'min:25'],
-            'photoPath' => ['required', 'string', 'max:255', 'min:2'],
-            'photoName' => ['required', 'string', 'max:255', 'min:2'],
-            'user_id' => ['required', 'exists:users,id']
-        ]);
 
-        $page->pageTitle = $request->input('pageTitle');
-        $page->pageText = $request->input('pageText');
-        $page->photoPath = $request->input('photoPath');
-        $page->photoName = $request->input('photoName');
+        $page->pageTitle = $request->validated('pageTitle');
+        $page->pageText = $request->validated('pageText');
+        $page->photoPath = $request->validated('photoPath');
+        $page->photoName = $request->validated('photoName');
         $page->save();
 
         return redirect()->route('page.show', $page);

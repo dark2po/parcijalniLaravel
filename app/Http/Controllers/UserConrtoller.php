@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\View;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class UserConrtoller extends Controller
@@ -37,22 +36,14 @@ class UserConrtoller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:2'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', Password::defaults()],
-            'role_id' => ['required', 'exists:roles,id']
-        ]);
-
-
         User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'role_id' => $request->input('role_id'),
+            'name' => $request->validated('name'),
+            'email' => $request->validated('email'),
+            'password' => Hash::make($request->validated('password')),
+            'role_id' => $request->validated('role_id'),
         ]);
 
         return redirect()->route('user.index');
@@ -83,16 +74,12 @@ class UserConrtoller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:2'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-            'role_id' => ['required', 'exists:roles,id']
-        ]);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->role_id = $request->input('role_id');
+
+        $user->name = $request->validated('name');
+        $user->email = $request->validated('email');
+        $user->role_id = $request->validated('role_id');
         
         if ($request->filled('password')) {
             $request->validate([
@@ -101,7 +88,6 @@ class UserConrtoller extends Controller
             $user->password = $request->input('password');
         }
 
-        
         $user->save();
 
         return redirect()->route('user.show', $user);

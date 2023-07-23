@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NavigationStoreRequest;
+use App\Http\Requests\NavigationUpdateRequest;
 use App\Models\Navigation;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -29,18 +31,13 @@ class NavigationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NavigationStoreRequest $request)
     {
-        $request->validate([
-            'navigationName' => ['required', 'string', 'max:255', 'min:2', 'unique:'.Navigation::class],
-            'uri' => ['required', 'string', 'max:255', 'min:2'],
-            'page_id' => ['required', 'exists:pages,id']
-        ]);
 
         Navigation::create([
-            'navigationName' => $request->input('navigationName'),
-            'uri' => $request->input('uri'),
-            'page_id' => $request->input('page_id')
+            'navigationName' => $request->validated('navigationName'),
+            'uri' => $request->validated('uri'),
+            'page_id' => $request->validated('page_id')
         ]);
 
         return redirect()->route('navigation.index');
@@ -71,17 +68,12 @@ class NavigationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Navigation $navigation)
+    public function update(NavigationUpdateRequest $request, Navigation $navigation)
     {
-        $request->validate([
-            'navigationName' => ['required', 'string', 'max:255', 'min:2', Rule::unique(Navigation::class)->ignore($navigation->id)],
-            'uri' => ['required', 'string', 'max:255', 'min:2'],
-            'page_id' => ['required', 'exists:pages,id']
-        ]);
 
-        $navigation->navigationName = $request->input('navigationName');
-        $navigation->uri = $request->input('uri');
-        $navigation->page_id = $request->input('page_id');
+        $navigation->navigationName = $request->validated('navigationName');
+        $navigation->uri = $request->validated('uri');
+        $navigation->page_id = $request->validated('page_id');
         $navigation->save();
 
         return redirect()->route('navigation.show', $navigation);
