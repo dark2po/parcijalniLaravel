@@ -16,7 +16,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        return Page::all();
+        return view('page.index', ['pages' => Page::all()->toArray()]);
+        // return Page::all();
     }
 
     /**
@@ -52,7 +53,8 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
-        return $page;
+        return view('page.show', ['page' => $page->toArray()]);
+        // return $page;
     }
 
     /**
