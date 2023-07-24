@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      Create New Role!
+    </h2>
+  </x-slot>
+  <div class="container mx-auto flex justify-center">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
 
-<body>
-  
-  <h1>Fill with new user data!</h1>
+    <form action="/role" , method=post>
+      @csrf
+      <div>
+        <x-input-label for="roleName" value="Role name:" />
+        <x-text-input id="roleName" class="block mt-1 w-full" type="text" name="roleName" :value="old('roleName')" required autofocus autocomplete="roleName" />
+        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+      </div>
 
-  @if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+      <!-- <label for="roleName">Role name:</label><br>
+      <input type="text" id="roleName" name="roleName" required="required" value="{{ old('roleName') }}"><br><br> -->
+      <!-- <input type="submit" value="Create new role"> -->
+      <x-primary-button class="ml-4">
+        {{ __('Create new role') }}
+      </x-primary-button>
+    </form>
+
   </div>
-  @endif
-
-  <form action="/role" , method=post>
-    <label for="roleName">Role name:</label><br>
-    <input type="text" id="roleName" name="roleName" required="required" value="{{ old('roleName') }}"><br><br>
-    @csrf
-    <input type="submit" value="Create new role">
-  </form>
-
-</body>
-
-</html>
+</x-app-layout>

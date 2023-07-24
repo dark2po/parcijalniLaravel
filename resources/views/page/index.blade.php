@@ -1,13 +1,16 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Registrated Pages' List
+        </h2>
+    </x-slot>
 
-@section ('content')
+    <div class="container mx-auto flex justify-center">
 
-    <h1>Registrated pages</h1><br>
-
-    @forelse ($pages as $page)
-        <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}}  Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p>
-    @empty
+        @forelse ($pages as $page)
+        <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}} Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p>
+        @empty
         <p>No pages registrated!</p>
-    @endforelse
-
-@endsection
+        @endforelse
+    </div>
+</x-app-layout>

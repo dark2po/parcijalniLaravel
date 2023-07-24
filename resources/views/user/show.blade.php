@@ -1,9 +1,12 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            User Data
+        </h2>
+    </x-slot>
+    <div class="container mx-auto flex justify-center">
 
-@section ('content')
+        <p>id: {{$user['id']}} Name: {{$user['name']}} email: {{$user['email']}} roleID: {{$user['role_id']}}</p>
 
-    <h1>User Data</h1><br>
-
-    <p>id: {{$user['id']}} Name: {{$user['name']}} email: {{$user['email']}} roleID: {{$user['role_id']}}</p>
-
-@endsection
+    </div>
+</x-app-layout>

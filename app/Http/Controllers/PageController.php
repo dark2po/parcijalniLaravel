@@ -85,6 +85,7 @@ class PageController extends Controller
         $page->pageText = $request->validated('pageText');
         $page->photoPath = $request->validated('photoPath');
         $page->photoName = $request->validated('photoName');
+        $page->user_id = $request->validated('user_id');
         $page->save();
 
         return redirect()->route('page.show', $page);

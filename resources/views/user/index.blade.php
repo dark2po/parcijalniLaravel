@@ -1,13 +1,17 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Registrated Users' List
+        </h2>
+    </x-slot>
+    <div class="container mx-auto flex justify-center">
 
-@section ('content')
 
-    <h1>Registrated Users</h1><br>
-
-    @forelse ($users as $user)
+        @forelse ($users as $user)
         <p>id: {{$user['id']}} Name: {{$user['name']}} email: {{$user['email']}} roleID: {{$user['role_id']}}</p>
-    @empty
+        @empty
         <p>No Users registrated!</p>
-    @endforelse
+        @endforelse
 
-@endsection
+    </div>
+</x-app-layout>

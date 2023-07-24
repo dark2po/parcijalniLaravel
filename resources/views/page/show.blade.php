@@ -1,10 +1,14 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Page's Data
+        </h2>
+    </x-slot>
 
-@section ('content')
+    <div class="container mx-auto flex justify-center">
 
-    <h1>Page Data</h1><br>
+        <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}} Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p><br>
+        <p>Text: {{$page['pageText']}}</p>
 
-    <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}}  Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p><br>
-    <p>Text: {{$page['pageText']}}</p>
-
-@endsection
+    </div>
+</x-app-layout>

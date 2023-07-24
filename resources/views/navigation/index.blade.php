@@ -1,8 +1,10 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Registrated Vavigations' List
+        </h2>
+    </x-slot>
 
-@section ('content')
-
-    <h1>Registrated navigations</h1><br>
 
     @forelse ($navigations as $navigation)
         <p>id: {{$navigation['id']}} Name: {{$navigation['navigationName']}} URI: {{$navigation['uri']}} PageID: {{$navigation['page_id']}}</p>
@@ -10,4 +12,5 @@
         <p>No navigations registrated!</p>
     @endforelse
 
-@endsection
+    </div>
+</x-app-layout>

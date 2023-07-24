@@ -63,6 +63,7 @@ class NavigationController extends Controller
             'id' => $navigation->id,
             'navigationName' => $navigation->navigationName,
             'uri' => $navigation->uri,
+            'page_id' => $navigation->page_id,
             'pages' => $pages
         ]);
     }

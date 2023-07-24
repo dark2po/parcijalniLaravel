@@ -1,9 +1,11 @@
-@extends('app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Navigation's Data
+        </h2>
+    </x-slot>
 
-@section ('content')
-
-    <h1>navigation Data</h1><br>
 
     <p>id: {{$navigation['id']}} Name: {{$navigation['navigationName']}} URI: {{$navigation['uri']}} PageID: {{$navigation['page_id']}}</p>
-
-@endsection
+    </div>
+</x-app-layout>

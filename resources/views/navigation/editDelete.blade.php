@@ -1,55 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      Edit navigation data!
+    </h2>
+  </x-slot>
+  <div class="container mx-auto flex justify-center">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
 
-<body>
+    <form action="/navigation/{{$id}}" , method=post>
+      @csrf
+      @method('PUT')
+      <div>
+        <x-input-label for="navigationName" value="Navigation Name:" />
+        <x-text-input id="navigationName" class="block mt-1 w-full" type="text" name="navigationName" :value=$navigationName required autofocus autocomplete="navigationName" />
+        <x-input-error :messages="$errors->get('navigationName')" class="mt-2" />
+      </div>
 
-  <h1>Edit navigation data!</h1>
+      <div>
+        <x-input-label for="uri" value="URI:" />
+        <x-text-input id="uri" class="block mt-1 w-full" type="text" name="uri" :value=$uri required autofocus autocomplete="uri" />
+        <x-input-error :messages="$errors->get('uri')" class="mt-2" />
+      </div>  
 
-  @if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+
+      <label for="page_id">Select page:</label><br>
+      <select id="page_id" name="page_id">
+        <option value="none" selected disabled hidden>Select an Option</option>
+        @foreach ($pages as $page_id2 => $pageName)
+        <option value="{{$page_id2}}" @selected($page_id2==$page_id)>"{{$pageName}}"</option>
+        @endforeach
+      </select>
+      <br><br>
+
+      <x-primary-button class="ml-4">
+                {{ __('Update navigation data') }}
+      </x-primary-button>
+    </form>
+
+    <form action="/navigation/{{$id}}" , method=post>
+    @csrf
+    @method('DELETE')
+    <x-primary-button class="ml-4">
+                {{ __('Delete Navigation !!!') }}
+      </x-primary-button>
+    </form>
   </div>
-  @endif
-
-  <form action="/navigation/{{$id}}" , method=post>
-    <input type="hidden" name="_method" value="PUT">
-    <label for="navigationName">Navigation name:</label><br>
-    <input type="text" id="navigationName" name="navigationName" required="required" value="{{$navigationName}}"><br><br>
-    <label for="uri">URI:</label><br>
-    <input type="text" id="uri" name="uri" required="required" value="{{$uri}}"><br><br>
-
-    <label for="page_id">Select page:</label><br>
-    <select id="page_id" name ="page_id">
-      <option value="none" selected disabled hidden>Select an Option</option>
-      @foreach ($pages as $page_id2 => $pageName)
-      <option value="{{$page_id}}" @selected($page_id2 == $page_id)>"{{$pageName}}"</option>
-      @endforeach
-    </select>  
-    <br><br>
-
-    @csrf
-    <input type="submit" value="Update navigation data">
-  </form>
-  <br><br>
-  <h1>Or delete that navigation!!!</h1>
-  <form action="/navigation/{{$id}}" , method=post>
-    <input type="hidden" name="_method" value="DELETE">
-    <label for="navigationName">Navigation name:</label><br>
-    <input type="text" id="navigationName" name="navigationName" required="required" value="{{$navigationName}}"><br><br>
-    @csrf
-    <input type="submit" value="Delete Navigation !!!">
-  </form>
-
-</body>
-
-</html>
+</x-app-layout>

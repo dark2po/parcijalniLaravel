@@ -1,44 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      Edit role data!
+    </h2>
+  </x-slot>
+  <div class="container mx-auto flex justify-center">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+    <form action="/role/{{$id}}" , method=post>
+      @csrf
+      @method('PUT')
+      <div>
+        <x-input-label for="roleName" value="Role name:" />
+        <x-text-input id="roleName" class="block mt-1 w-full" type="text" name="roleName" :value=$roleName required autofocus autocomplete="roleName" />
+        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+      </div>
 
-<body>
+      <x-primary-button class="ml-4">
+        {{ __('Update role data') }}
+      </x-primary-button>
+    </form>
+    <br><br>
 
-  <h1>Edit user data!</h1>
+    <h1>Or delete that user!!!</h1>
+    <form action="/role/{{$id}}" , method=post>
+      @csrf
+      @method('DELETE')
+      <input type="hidden" name="_method" value="DELETE">
 
-  @if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+      <x-primary-button class="ml-4">
+        {{ __('Delete this role !!!') }}
+      </x-primary-button>
+    </form>
   </div>
-  @endif
-
-  <form action="/role/{{$id}}" , method=post>
-    <input type="hidden" name="_method" value="PUT">
-    <label for="roleName">Role name:</label><br>
-    <input type="text" id="roleName" name="roleName" required="required" value="{{$roleName}}"><br><br>
-    @csrf
-    <input type="submit" value="Update role data">
-  </form>
-  <br><br>
-  
-  <h1>Or delete that user!!!</h1>
-  <form action="/role/{{$id}}" , method=post>
-    <input type="hidden" name="_method" value="DELETE">
-    <!-- <label for="roleName">User name:</label><br>
-    <input type="text" id="roleName" name="roleName" required="required" value="{{$roleName}}"><br><br> -->
-    @csrf
-    <input type="submit" value="Delete this role !!!">
-  </form>
-
-</body>
-
-</html>
+</x-app-layout>
