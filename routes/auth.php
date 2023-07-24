@@ -39,11 +39,11 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
 
-    // Route::get('/', function () {
-    //     return view('homepage');
-    // });
+    Route::get('/', function () {
+        return redirect()->route('homepage.index');
+    });
 
-    Route::apiResource('/homepage', HomepageController::class);
+    Route::apiResource('/homepage', HomepageController::class)->except(['store', 'update', 'destroy']);
 
 
 });
