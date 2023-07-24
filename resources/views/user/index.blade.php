@@ -6,12 +6,6 @@
     </x-slot>
     <div class="container mx-auto flex justify-center">
 
-        <!-- @forelse ($users as $user)
-        <p>id: {{$user['id']}} Name: {{$user['name']}} email: {{$user['email']}} roleID: {{$user['role_id']}}</p>
-        @empty
-        <p>No Users registrated!</p>
-        @endforelse -->
-
         @if ($users->isEmpty())
         <p>No Users Registrated.</p>
         @else
@@ -31,7 +25,7 @@
             <hr class="dotted">
             @endforeach
         </ul>
-        {{-- $user->links() --}}
+
         @endif
 
     </div>

@@ -16,7 +16,7 @@ class NavigationController extends Controller
      */
     public function index()
     {
-        return view('navigation.index', ['navigations' => Navigation::all()->toArray()]);
+        return view('navigation.index', ['navigations' => Navigation::all()]);
         // return Navigation::all();
     }
 
@@ -49,7 +49,7 @@ class NavigationController extends Controller
      */
     public function show(Navigation $navigation)
     {
-        return view('navigation.show', ['navigation' => $navigation->toArray()]);
+        return view('navigation.show', ['navigation' => $navigation]);
         // return $navigation;
     }
 

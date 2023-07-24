@@ -14,6 +14,7 @@
         <x-text-input id="roleName" class="block mt-1 w-full" type="text" name="roleName" :value=$roleName required autofocus autocomplete="roleName" />
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
       </div>
+      <br>
 
       <x-primary-button class="ml-4">
         {{ __('Update role data') }}
@@ -21,7 +22,6 @@
     </form>
     <br><br>
 
-    <h1>Or delete that user!!!</h1>
     <form action="/role/{{$id}}" , method=post>
       @csrf
       @method('DELETE')

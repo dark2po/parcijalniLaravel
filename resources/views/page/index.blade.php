@@ -7,10 +7,26 @@
 
     <div class="container mx-auto flex justify-center">
 
-        @forelse ($pages as $page)
-        <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}} Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p>
-        @empty
-        <p>No pages registrated!</p>
-        @endforelse
+    @if ($pages->isEmpty())
+        <p>No Pages Registrated.</p>
+        @else
+        <ul>
+            @foreach ($pages as $page)
+            <li>
+                <h3>{{ $page->pageTitle }}</h3>
+                <p>Posted by: {{ $page->user->name }}</p>
+            </li>
+            <div>
+                <a href="{{ route('page.show', $page) }}" style="background-color: blue; color: white; padding: 6px 12px;">View</a>
+
+                <a href="{{ route('page.edit', $page) }}" style="background-color: orange; color: white; padding: 6px 12px;">Edit Or Delete</a>
+
+            </div>
+            <hr class="dotted">
+            @endforeach
+        </ul>
+
+        @endif
+
     </div>
 </x-app-layout>

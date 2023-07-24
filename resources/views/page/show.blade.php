@@ -7,8 +7,20 @@
 
     <div class="container mx-auto flex justify-center">
 
-        <p>id: {{$page['id']}} : Title: {{$page['pageTitle']}} Path: {{$page['photoPath']}} Photo: {{$page['photoName']}} UserID: {{$page['user_id']}}</p><br>
-        <p>Text: {{$page['pageText']}}</p>
+    <ul>
+            <li>
+                <h1>{{ $page->pageTitle }}</h1>
+                <p>{{ $page->pageText }}</p>
+
+                <p>Published by: {{ $page->user->name }}</p>
+            </li>
+            <div>
+                <a href="{{ route('page.show', $page) }}" style="background-color: blue; color: white; padding: 6px 12px;">View</a>
+
+                <a href="{{ route('page.edit', $page) }}" style="background-color: orange; color: white; padding: 6px 12px;">Edit Or Delete</a>
+
+            </div>
+        </ul>
 
     </div>
 </x-app-layout>

@@ -5,7 +5,20 @@
         </h2>
     </x-slot>
 
+    <ul>
+            <li>
+                <h1>{{ $navigation->navigationName }}</h1>
+                <p>{{ $navigation->uri }}</p>
 
-    <p>id: {{$navigation['id']}} Name: {{$navigation['navigationName']}} URI: {{$navigation['uri']}} PageID: {{$navigation['page_id']}}</p>
+                <p>Navigate to page: {{ $navigation->page->title }}</p>
+            </li>
+            <div>
+                <a href="{{ route('navigation.show', $navigation) }}" style="background-color: blue; color: white; padding: 6px 12px;">View</a>
+
+                <a href="{{ route('navigation.edit', $navigation) }}" style="background-color: orange; color: white; padding: 6px 12px;">Edit Or Delete</a>
+
+            </div>
+        </ul>
+
     </div>
 </x-app-layout>
