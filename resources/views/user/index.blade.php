@@ -6,12 +6,33 @@
     </x-slot>
     <div class="container mx-auto flex justify-center">
 
-
-        @forelse ($users as $user)
+        <!-- @forelse ($users as $user)
         <p>id: {{$user['id']}} Name: {{$user['name']}} email: {{$user['email']}} roleID: {{$user['role_id']}}</p>
         @empty
         <p>No Users registrated!</p>
-        @endforelse
+        @endforelse -->
+
+        @if ($users->isEmpty())
+        <p>No Users Registrated.</p>
+        @else
+        <ul>
+            @foreach ($users as $user)
+            <li>
+                <h3>{{ $user->name }}</h3>
+                <p>{{ $user->email }}</p>
+                <p>Role: {{ $user->role->roleName }}</p>
+            </li>
+            <div>
+                <a href="{{ route('user.show', $user) }}" style="background-color: blue; color: white; padding: 6px 12px;">View</a>
+
+                <a href="{{ route('user.edit', $user) }}" style="background-color: orange; color: white; padding: 6px 12px;">Edit Or Delete</a>
+
+            </div>
+            <hr class="dotted">
+            @endforeach
+        </ul>
+        {{-- $user->links() --}}
+        @endif
 
     </div>
 </x-app-layout>

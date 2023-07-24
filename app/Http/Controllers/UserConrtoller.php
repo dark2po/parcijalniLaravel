@@ -18,7 +18,7 @@ class UserConrtoller extends Controller
     public function index(User $user)
     {
 
-        return view('user.index', ['users' => User::all()->toArray()]);
+        return view('user.index', ['users' => User::all()]);
         // return User::all();
     }
 
@@ -57,7 +57,7 @@ class UserConrtoller extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', ['user' => $user->toArray()]);
+        return view('user.show', ['user' => $user]);
         // return $user;
     }
 
@@ -101,7 +101,7 @@ class UserConrtoller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $user)
+    public function destroy(User $user)
     {
         User::destroy($user);
 
