@@ -12,7 +12,7 @@
       <div>
         <x-input-label for="roleName" value="Role name:" />
         <x-text-input id="roleName" class="block mt-1 w-full" type="text" name="roleName" :value=$roleName required autofocus autocomplete="roleName" />
-        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <x-input-error :messages="$errors->get('roleName')" class="mt-2" />
       </div>
       <br>
 
