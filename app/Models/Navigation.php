@@ -23,6 +23,6 @@ class Navigation extends Model
 
     public function page(): BelongsTo
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class)->withTrashed();
     }
 }

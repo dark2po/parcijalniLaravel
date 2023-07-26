@@ -17,6 +17,7 @@ class UserConrtoller extends Controller
      */
     public function index(User $user)
     {
+        // dd(User::all(), $user->query()->get(), User::withTrashed()->get());
 
         return view('user.index', ['users' => User::all()]);
         // return User::all();
