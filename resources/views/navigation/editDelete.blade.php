@@ -23,8 +23,8 @@
       </div>  
 
 
-      <label for="page_id">Select page:</label><br>
-      <select id="page_id" name="page_id">
+      <label for="page_id" class=" font-medium text-sm text-gray-700 ">Select page:</label><br>
+      <select id="page_id" name="page_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($pages as $page_id2 => $pageName)
         <option value="{{$page_id2}}" @selected($page_id2==$page_id)>"{{$pageName}}"</option>

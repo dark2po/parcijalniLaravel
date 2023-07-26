@@ -28,8 +28,8 @@
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
       </div>
 
-      <label for="role_id">Select role:</label><br>
-      <select id="role_id" name="role_id">
+      <label for="role_id" class=" font-medium text-sm text-gray-700 ">Select role:</label><br>
+      <select id="role_id" name="role_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($roles as $role_id => $roleName)
         <option value="{{$role_id}}" @selected($role_id==old('role_id'))>"{{$roleName}}"</option>

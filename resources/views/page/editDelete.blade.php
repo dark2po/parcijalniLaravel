@@ -17,7 +17,7 @@
       </div>
 
 
-      <label for="pageText">Page text:</label><br>
+      <label for="pageText" class=" font-medium text-sm text-gray-700 ">Page text:</label><br>
       <textarea id="pageText" name="pageText" required="required" cols="55" rows="10">{{$pageText}}</textarea> <br><br>
       <x-input-error :messages="$errors->get('pageText')" class="mt-2" />
       
@@ -31,7 +31,7 @@
       </div>
 
 
-      <label for="user_id">Select user:</label><br>
+      <label for="user_id" class=" font-medium text-sm text-gray-700 ">Select user:</label><br>
       <select id="user_id" name="user_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($users as $user_id2 => $name)

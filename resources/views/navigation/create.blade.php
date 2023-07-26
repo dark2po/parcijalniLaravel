@@ -20,8 +20,8 @@
         <x-input-error :messages="$errors->get('uri')" class="mt-2" />
       </div>      
 
-      <label for="page_id">Select page:</label><br>
-      <select id="page_id" name="page_id">
+      <label for="page_id" class=" font-medium text-sm text-gray-700 ">Select page:</label><br>
+      <select id="page_id" name="page_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($pages as $page_id => $pageName)
         <option value="{{$page_id}}" @selected($page_id==old('page_id'))>"{{$pageName}}"</option>

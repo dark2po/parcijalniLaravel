@@ -18,7 +18,7 @@
       <!-- <label for="roleName">Role name:</label><br>
       <input type="text" id="roleName" name="roleName" required="required" value="{{ old('roleName') }}"><br><br> -->
       <!-- <input type="submit" value="Create new role"> -->
-      <x-primary-button class="ml-4">
+      <x-primary-button class="ml-4 block mt-2">
         {{ __('Create new role') }}
       </x-primary-button>
     </form>

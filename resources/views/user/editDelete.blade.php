@@ -36,8 +36,8 @@
       <!-- <label for="password">Password:</label><br>
       <input type="text" id="password" name="password" ><br><br> -->
 
-      <label for="role_id">Select role:</label><br>
-      <select id="role_id" name="role_id">
+      <label for="role_id" class=" font-medium text-sm text-gray-700 ">Select role:</label><br>
+      <select id="role_id" name="role_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($roles as $role_id2 => $roleName)
         <option value="{{$role_id2}}" @selected($role_id2==$role_id)>"{{$roleName}}"</option>
