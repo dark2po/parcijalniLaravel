@@ -17,15 +17,13 @@ class PageSeeder extends Seeder
             [
                 'pageTitle' => 'Title 01',
                 'pageText' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem et tortor consequat id porta. Habitant morbi tristique senectus et. Sed tempus urna et pharetra pharetra. Bibendum neque egestas congue quisque egestas diam in. In iaculis nunc sed augue. Magnis dis parturient montes nascetur ridiculus mus mauris. Pulvinar neque laoreet suspendisse interdum consectetur. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Feugiat sed lectus vestibulum mattis ullamcorper velit. Interdum varius sit amet mattis vulputate enim nulla aliquet. Tellus pellentesque eu tincidunt tortor aliquam. Semper viverra nam libero justo laoreet sit amet cursus sit. Molestie at elementum eu facilisis sed odio morbi. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.',
-                'photoPath' => '/storage/app/public',
-                'photoName' => 'Photo 01',
+                'image' => 'Photo-01',
                 'user_id' => 1,
             ],
             [
                 'pageTitle' => 'Title 02',
                 'pageText' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem et tortor consequat id porta. Habitant morbi tristique senectus et. Sed tempus urna et pharetra pharetra. Bibendum neque egestas congue quisque egestas diam in. In iaculis nunc sed augue. Magnis dis parturient montes nascetur ridiculus mus mauris. Pulvinar neque laoreet suspendisse interdum consectetur. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Feugiat sed lectus vestibulum mattis ullamcorper velit. Interdum varius sit amet mattis vulputate enim nulla aliquet. Tellus pellentesque eu tincidunt tortor aliquam. Semper viverra nam libero justo laoreet sit amet cursus sit. Molestie at elementum eu facilisis sed odio morbi. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.',
-                'photoPath' => '/storage/app/public',
-                'photoName' => 'Photo 02',
+                'image' => 'Photo-02',
                 'user_id' => 2,
             ]
             ]);

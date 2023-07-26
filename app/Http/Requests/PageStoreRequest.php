@@ -7,6 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PageStoreRequest extends FormRequest
 {
+    // public function __construct()
+    // {
+    //     dd(request()->image);
+    // }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,8 +29,7 @@ class PageStoreRequest extends FormRequest
         return [
             'pageTitle' => ['required', 'string', 'max:50', 'min:2', 'unique:'.Page::class],
             'pageText' => ['required', 'string', 'max:555', 'min:25'],
-            'photoPath' => ['required', 'string', 'max:50', 'min:2'],
-            'photoName' => ['required', 'string', 'max:50', 'min:2'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'user_id' => ['required', 'exists:users,id']
         ];
     }

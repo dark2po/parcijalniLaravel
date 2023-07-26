@@ -34,16 +34,20 @@ class PageController extends Controller
      */
     public function store(PageStoreRequest $request)
     {
-
+        if (is_null($request->image)) {
+            $path = 'images/noImageAvailable.png';
+        } else {
+            $path = $request->image->store('images', 'public');
+        }
+        
 
         Page::create([
             'pageTitle' => $request->validated('pageTitle'),
             'pageText' => $request->validated('pageText'),
-            'photoPath' => $request->validated('photoPath'),
-            'photoName' => $request->validated('photoName'),
+            'image' => $path,
             'user_id' => $request->validated('user_id'),
-
         ]);
+
 
         return redirect()->route('page.index');
     }
@@ -68,8 +72,7 @@ class PageController extends Controller
             'id' => $page->id,
             'pageTitle' => $page->pageTitle,
             'pageText' => $page->pageText,
-            'photoPath' => $page->photoPath,
-            'photoName' => $page->photoName,
+            'image' => $page->image,
             'user_id' => $page->user_id, 
             "users" => $users
         ]);
@@ -80,11 +83,15 @@ class PageController extends Controller
      */
     public function update(PageUpdateRequest $request, Page $page)
     {
+        if (is_null($request->image)) {
+            $path = $page->image;
+        } else {
+            $path = $request->image->store('images', 'public');
+        }
 
         $page->pageTitle = $request->validated('pageTitle');
         $page->pageText = $request->validated('pageText');
-        $page->photoPath = $request->validated('photoPath');
-        $page->photoName = $request->validated('photoName');
+        $page->image = $path;
         $page->user_id = $request->validated('user_id');
         $page->save();
 

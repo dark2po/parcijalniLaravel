@@ -7,7 +7,7 @@
   <div class="container mx-auto flex justify-center">
 
 
-    <form action="/page/{{$id}}" , method=post>
+    <form action="/page/{{$id}}" , method=post enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div>
@@ -20,22 +20,19 @@
       <label for="pageText">Page text:</label><br>
       <textarea id="pageText" name="pageText" required="required" cols="55" rows="10">{{$pageText}}</textarea> <br><br>
       <x-input-error :messages="$errors->get('pageText')" class="mt-2" />
+      
 
       <div>
-        <x-input-label for="photoName" value="Photo Name" />
-        <x-text-input id="photoName" class="block mt-1 w-full" type="text" name="photoName" :value=$photoName required autofocus autocomplete="photoName" />
-        <x-input-error :messages="$errors->get('photoName')" class="mt-2" />
+        <x-input-label for="image" value="Upload New Image" />
+        <div >
+          <input type="file" class="form-control" id="image" name="image" :value=$pageTitle nullable>
+        </div>
+        <x-input-error :messages="$errors->get('image')" class="mt-2" />
       </div>
 
-
-      <div>
-        <x-input-label for="photoPath" value="Photo Path" />
-        <x-text-input id="photoPath" class="block mt-1 w-full" type="text" name="photoPath" :value=$photoPath required autofocus autocomplete="photoPath" />
-        <x-input-error :messages="$errors->get('photoPath')" class="mt-2" />
-      </div>
 
       <label for="user_id">Select user:</label><br>
-      <select id="user_id" name="user_id">
+      <select id="user_id" name="user_id" class="block mt-1 w-full">
         <option value="none" selected disabled hidden>Select an Option</option>
         @foreach ($users as $user_id2 => $name)
         <option value="{{$user_id2}}" @selected($user_id2==$user_id)>"{{$name}}"</option>

@@ -17,11 +17,12 @@
                 <p>Role: {{ $user->role->roleName }}</p>
             </li>
             <div>
-                <a href="{{ route('user.show', $user) }}" style="background-color: blue; color: white; padding: 6px 12px;">View</a>
+                <a href="{{ route('user.show', $user) }}" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">View</a>
 
-                <a href="{{ route('user.edit', $user) }}" style="background-color: orange; color: white; padding: 6px 12px;">Edit Or Delete</a>
+                <a href="{{ route('user.edit', $user) }}" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Edit Or Delete</a>
 
             </div>
+            <li><br> </li>
             <hr class="dotted">
             @endforeach
         </ul>

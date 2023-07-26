@@ -17,8 +17,7 @@ return new class extends Migration
             $table->softDeletes();   // OVO DODAJEMO DA BISMO MOGLI KORISTITI SoftDeletes NACIN RADA SA MODELIMA
             $table->string('pageTitle');
             $table->text('pageText');
-            $table->string('photoPath');
-            $table->string('photoName');
+            $table->string('image');
         });
     }
 

@@ -15,10 +15,8 @@ class Page extends Model
     protected $fillable = [
         'pageTitle', 
         'pageText', 
-        'photoPath', 
-        'photoName', 
+        'image', 
         'user_id', 
-        'navigation_id'
     ];
 
     protected $hidden = [];
