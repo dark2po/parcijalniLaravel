@@ -25,7 +25,7 @@ class PageUpdateRequest extends FormRequest
     {
         return [
             'pageTitle' => ['required', 'string', 'max:50', 'min:2', Rule::unique(Page::class)->ignore($this->page->id)],
-            'pageText' => ['required', 'string', 'max:555', 'min:25'],
+            'pageText' => ['required', 'string', 'max:2048', 'min:25'],
             'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'user_id' => ['required', 'exists:users,id']
         ];

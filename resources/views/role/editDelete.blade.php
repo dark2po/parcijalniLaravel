@@ -16,7 +16,7 @@
       </div>
       <br>
 
-      <x-primary-button class="ml-4">
+      <x-primary-button class="block">
         {{ __('Update role data') }}
       </x-primary-button>
     </form>
